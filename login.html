@@ -113,6 +113,7 @@ async function login(){
   const user = document.getElementById("user").value.trim();
   const pass = document.getElementById("pass").value.trim();
   const err  = document.getElementById("err");
+
   err.style.display = "none";
 
   if(!user || !pass){
@@ -121,22 +122,21 @@ async function login(){
     return;
   }
 
-  // URL Web App Google Apps Script
   const url = "https://script.google.com/macros/s/AKfycbxN_tiaVn6I6SWl2B9NhSlUCuXLiGg9go-4LcAbOVe2ro00Zk6jz3jSAsVyCeEAtS4e/exec";
 
-  try {
-    // Pakai proxy cors-anywhere agar bisa di localhost
-    const proxyUrl = "https://corsproxy.io/?";
-    const res = await fetch(proxyUrl + encodeURIComponent(url), {
+  try{
+    const body = new URLSearchParams();
+    body.append("username", user);
+    body.append("password", pass);
+
+    const res = await fetch(url, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ username: user, password: pass })
+      body: body
+      // ⛔ JANGAN SET HEADER APA PUN
     });
 
     const data = await res.json();
-    console.log("Data dari server:", data);
+    console.log("RESPON:", data);
 
     if(data.status === "ok"){
       sessionStorage.setItem("SISDIG_AUTH", "OK");
@@ -149,14 +149,15 @@ async function login(){
       err.textContent = "Username atau password salah";
     }
 
-  } catch(error){
-    console.error("Error fetch:", error);
+  } catch(e){
+    console.error(e);
     err.style.display = "block";
-    err.textContent = "Server tidak merespons / CORS error";
+    err.textContent = "Server tidak merespons";
   }
 }
 </script>
 
 </body>
 </html>
+
 
