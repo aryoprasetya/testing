@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SISDIG DKR</title>
+
+<link rel="icon" href="assets/images/logo.png">
+
+<!-- Font & Icon -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;font-family:Poppins,sans-serif}
+body{
+  margin:0;
+  background:#f1f5f9;
+  color:#0f172a;
+}
+
+/* HEADER */
+.header{
+  background:linear-gradient(135deg,#2563eb,#1e40af);
+  padding:26px 20px 30px;
+  border-radius:0 0 26px 26px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+.header img{
+  width:150px;        /* kontrol ukuran */
+  height:auto;       /* ⬅️ PENTING: jaga rasio */
+  max-height:70px;   /* biar gak kebesaran */
+  object-fit:contain;
+}
+
+.header{
+  min-height:120px;
+}
+
+/* STATUS CARD */
+.status{
+  background:white;
+  margin:-20px 20px 20px;
+  border-radius:18px;
+  padding:16px;
+  box-shadow:0 10px 24px rgba(0,0,0,.12);
+}
+.status h3{
+  margin:0;
+  font-size:14px;
+}
+.status span{
+  display:block;
+  margin-top:4px;
+  font-size:12px;
+  color:#64748b;
+}
+
+/* MENU GRID */
+.container{
+  padding:10px 20px 20px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
+}
+
+.menu{
+  background:white;
+  border-radius:18px;
+  padding:18px 10px;
+  text-align:center;
+  box-shadow:0 6px 16px rgba(0,0,0,.12);
+  transition:.2s;
+}
+.menu:active{
+  transform:scale(.96);
+}
+
+/* ICON */
+.menu .icon{
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  margin:0 auto 10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(145deg,#3b82f6,#1d4ed8);
+}
+.menu .icon i{
+  font-size:30px;
+  color:white;
+}
+
+.menu .title{
+  font-size:14px;
+  font-weight:600;
+}
+.menu .desc{
+  font-size:11px;
+  color:#64748b;
+}
+
+footer{
+  text-align:center;
+  font-size:11px;
+  color:#94a3b8;
+  padding:16px 0;
+}
+</style>
+</head>
+
+<body>
+<div id="greeting"></div>
+
+<script>
+if(sessionStorage.getItem("SISDIG_AUTH")!=="OK"){
+  location.href="login.html";
+}
+
+const username = sessionStorage.getItem("SISDIG_USERNAME");
+
+const greetingEl = document.getElementById("greeting");
+if(greetingEl){
+  greetingEl.innerHTML = username ? `Halo <b>${username}</b> 👋` : "Halo 👋 Kakak!";
+}
+
+</script>
+
+<!-- HEADER -->
+<div class="header">
+  <img src="assets/images/swhite.png" alt="Logo SISDIG">
+</div>
+
+<!-- STATUS -->
+<div class="status">
+  <h3>Status Sistem</h3>
+  <span>Semua modul berjalan normal</span>
+</div>
+
+<!-- MENU -->
+<main class="container">
+
+  <div class="menu" onclick="openApp('simhad/index.html')">
+    <div class="icon"><i class='bx bx-qr-scan'></i></div>
+    <div class="title">SIMHAD</div>
+    <div class="desc">Absensi Kehadiran</div>
+  </div>
+
+  <div class="menu" onclick="comingSoon()">
+    <div class="icon"><i class='bx bx-wallet'></i></div>
+    <div class="title">Keuangan</div>
+    <div class="desc">Pemasukan & Pengeluaran</div>
+  </div>
+
+  <div class="menu" onclick="comingSoon()">
+    <div class="icon"><i class='bx bx-note'></i></div>
+    <div class="title">Notulensi</div>
+    <div class="desc">Catatan Rapat</div>
+  </div>
+
+  <div class="menu" onclick="comingSoon()">
+    <div class="icon"><i class='bx bx-folder'></i></div>
+    <div class="title">Arsip</div>
+    <div class="desc">Dokumen & Laporan</div>
+  </div>
+
+</main>
+
+<footer>© 2026 DKR Punggelan</footer>
+
+<script>
+function openApp(url){
+  location.href = url;
+}
+function comingSoon(){
+  alert("🚧 Modul ini sedang disiapkan 😄");
+}
+</script>
+
+</body>
+</html>

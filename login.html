@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Login SISDIG DKR</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;font-family:Poppins,sans-serif}
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:
+    radial-gradient(circle at top,#1e293b,#020617 70%);
+}
+
+.login-wrap{
+  width:100%;
+  max-width:380px;
+  padding:24px;
+}
+
+.card{
+  background:linear-gradient(145deg,#ffffff,#e5e7eb);
+  border-radius:22px;
+  padding:28px;
+  box-shadow:
+    0 25px 50px rgba(0,0,0,.45),
+    inset 0 1px 0 rgba(255,255,255,.8);
+}
+
+.logo{
+  width:150px;
+  height:auto;
+  max-height:70px;
+
+  display:block;          /* ⬅️ WAJIB */
+  margin:0 auto 14px;     /* ⬅️ CENTER HORIZONTAL */
+}
+
+h3{
+  text-align:center;
+  margin:0;
+  font-weight:700;
+  color:#020617;
+}
+p{
+  text-align:center;
+  font-size:13px;
+  color:#64748b;
+  margin:6px 0 18px;
+}
+
+input{
+  width:100%;
+  padding:14px;
+  margin-top:14px;
+  border-radius:14px;
+  border:1px solid #cbd5e1;
+  background:#f8fafc;
+  font-size:14px;
+}
+
+button{
+  width:100%;
+  padding:14px;
+  margin-top:18px;
+  border-radius:16px;
+  border:none;
+  font-weight:600;
+  font-size:15px;
+  color:white;
+  background:linear-gradient(145deg,#4f46e5,#4338ca);
+  box-shadow:
+    0 12px 22px rgba(79,70,229,.5),
+    inset 0 1px 0 rgba(255,255,255,.4);
+}
+
+button:active{
+  transform:translateY(2px);
+  box-shadow:0 6px 12px rgba(0,0,0,.35);
+}
+
+.error{
+  margin-top:14px;
+  font-size:12px;
+  text-align:center;
+  color:#dc2626;
+  display:none;
+}
+</style>
+
+<div class="login-wrap">
+  <div class="card">
+    <img src="assets/images/sisdig.png" class="logo">
+    <h3>LOGIN SISDIG DKR</h3>
+    <p>Sistem Digital Dewan Kerja Ranting</p>
+
+    <input id="user" placeholder="Username">
+    <input id="pass" type="password" placeholder="Password">
+    <button onclick="login()">Masuk Sistem</button>
+
+    <div class="error" id="err"></div>
+  </div>
+</div>
+
+<script>
+async function login(){
+  const user = document.getElementById("user").value.trim();
+  const pass = document.getElementById("pass").value.trim();
+  const err  = document.getElementById("err");
+  err.style.display = "none";
+
+  if(!user || !pass){
+    err.style.display = "block";
+    err.textContent = "Semua kolom wajib diisi";
+    return;
+  }
+
+  // URL Web App Google Apps Script
+  const url = "https://script.google.com/macros/s/AKfycbxN_tiaVn6I6SWl2B9NhSlUCuXLiGg9go-4LcAbOVe2ro00Zk6jz3jSAsVyCeEAtS4e/exec";
+
+  try {
+    // Pakai proxy cors-anywhere agar bisa di localhost
+    const proxyUrl = "https://corsproxy.io/?";
+    const res = await fetch(proxyUrl + encodeURIComponent(url), {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ username: user, password: pass })
+    });
+
+    const data = await res.json();
+    console.log("Data dari server:", data);
+
+    if(data.status === "ok"){
+      sessionStorage.setItem("SISDIG_AUTH", "OK");
+      sessionStorage.setItem("SISDIG_USERNAME", user);
+      sessionStorage.setItem("SISDIG_NAMA", data.nama);
+      sessionStorage.setItem("SISDIG_JABATAN", data.jabatan);
+      location.href = "index.html";
+    } else {
+      err.style.display = "block";
+      err.textContent = "Username atau password salah";
+    }
+
+  } catch(error){
+    console.error("Error fetch:", error);
+    err.style.display = "block";
+    err.textContent = "Server tidak merespons / CORS error";
+  }
+}
+</script>
+
+</body>
+</html>
