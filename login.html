@@ -112,7 +112,7 @@ button:active{
 async function login(){
   const user = document.getElementById("user").value.trim();
   const pass = document.getElementById("pass").value.trim();
-  const err  = document.getElementById("err");
+  const err = document.getElementById("err");
 
   err.style.display = "none";
 
@@ -129,36 +129,38 @@ async function login(){
     body.append("username", user);
     body.append("password", pass);
 
-    const res = await fetch(url, {
-      method: "POST",
+    const res = await fetch(url,{
+      method:"POST",
       body: body
-      // ⛔ JANGAN SET HEADER APA PUN
+      // ⚠ JANGAN SET HEADER
     });
 
+    // parse JSON
     const data = await res.json();
     console.log("RESPON:", data);
 
     if(data.status === "ok"){
-      sessionStorage.setItem("SISDIG_AUTH", "OK");
-      sessionStorage.setItem("SISDIG_USERNAME", user);
-      sessionStorage.setItem("SISDIG_NAMA", data.nama);
-      sessionStorage.setItem("SISDIG_JABATAN", data.jabatan);
-      location.href = "index.html";
+      sessionStorage.setItem("SISDIG_AUTH","OK");
+      sessionStorage.setItem("SISDIG_USERNAME",user);
+      sessionStorage.setItem("SISDIG_NAMA",data.nama);
+      sessionStorage.setItem("SISDIG_JABATAN",data.jabatan);
+      location.href="index.html";
     } else {
-      err.style.display = "block";
-      err.textContent = "Username atau password salah";
+      err.style.display="block";
+      err.textContent="Username atau password salah";
     }
 
   } catch(e){
     console.error(e);
-    err.style.display = "block";
-    err.textContent = "Server tidak merespons";
+    err.style.display="block";
+    err.textContent="Server tidak merespons / JSON invalid";
   }
 }
 </script>
 
 </body>
 </html>
+
 
 
 
