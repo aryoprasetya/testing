@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>SIMHAD DKR Punggelan — Sistem Informasi Manajemen Kehadiran</title>
-  <link rel="icon" href="assets/images/logodkr.png" type="image/png">
+  <link rel="icon" href="../assets/images/logo.png" type="image/png">
 
   <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
@@ -252,7 +252,7 @@ footer{
   ">
 
     <!-- LOGO -->
-    <img src="assets/images/logo.png" alt="DKR Punggelan"
+    <img src="../assets/images/logo.png" alt="DKR Punggelan"
       style="height:72px;margin-bottom:14px">
 
 <h3 style="
@@ -409,7 +409,6 @@ setInterval(() => {
 
     alert(
       "🕵️‍♂️ WOY!\n\n" +
-      "Inspect detected 😆\n\n" +
       "Ini bukan lomba ngulik yaa.\n" +
       "SIMHAD lagi sensitif 🙏"
     );
@@ -422,7 +421,7 @@ setInterval(() => {
 
 <header>
   <div class="brand">
-    <img src="assets/images/logo.png" alt="DKR Punggelan">
+    <img src="../assets/images/logo.png" alt="DKR Punggelan">
     <div>
       <h1>SIMHAD DKR PUNGGELAN</h1>
       <p>Sistem Informasi Manajemen Kehadiran</p>
@@ -605,10 +604,28 @@ async function startScanner(id){
   if(html5QrCode){await html5QrCode.stop().catch(()=>{});html5QrCode.clear();}
   html5QrCode=new Html5Qrcode('reader');
   let last='';let lastTime=0;
-  await html5QrCode.start({deviceId:{exact:id}},{fps:10,qrbox:250},txt=>{
-    const now=Date.now();if(txt===last&&now-lastTime<3000) return;last=txt;lastTime=now;
-    try{const o=JSON.parse(txt);if(o.nama&&o.jabatan&&!attendance.some(a=>a.nama===o.nama&&a.jabatan===o.jabatan)) add(o.nama,o.jabatan);}catch{}
-  });
+await html5QrCode.start({deviceId:{exact:id}},{fps:10,qrbox:250},txt=>{
+  const now = Date.now();
+  if(txt === last && now - lastTime < 3000) return;
+  last = txt; lastTime = now;
+
+  try {
+    const o = JSON.parse(txt);
+
+    // Ambil hanya nama & jabatan, abaikan properti lain
+    const nama = o.nama || "";
+    let jabatan = o.jabatan || "";
+
+    // Jika ada properti jabatan lain atau jabatan kosong, bisa di-handle di sini
+    if(nama && jabatan && !attendance.some(a => a.nama === nama && a.jabatan === jabatan)) {
+      add(nama, jabatan); // pakai fungsi add() yang sudah ada, otomatis kirim ke Sheets
+    }
+
+  } catch(err) {
+    // Kalau QR bukan JSON, bisa diabaikan atau log
+    console.log("QR tidak valid:", txt);
+  }
+});
 }
 function restartScanner(){startScanner(cameraSelect.value)}
 async function stopScanner(){if(html5QrCode){await html5QrCode.stop();html5QrCode.clear();toast('Kamera dimatikan','info')}}
