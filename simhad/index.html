@@ -5,15 +5,12 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>SIMHAD DKR Punggelan — Sistem Informasi Manajemen Kehadiran</title>
   <link rel="icon" href="../assets/images/logo.png" type="image/png">
-
-  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-
   <style>
     :root{
-      --primary:#5b2c83;      /* hijau pramuka */
-      --secondary:#00193b;    /* coklat pramuka */
+      --primary:#5b2c83;
+      --secondary:#00193b;
       --bg:#f4f6f8;
       --card:#ffffff;
       --text:#1f2937;
@@ -27,398 +24,49 @@
     }
     *{box-sizing:border-box;font-family:'Poppins',sans-serif}
     body{margin:0;background:var(--bg);color:var(--text);transition:.3s}
-
-    header{
-      display:flex;align-items:center;justify-content:space-between;
-      padding:18px 22px;background:var(--card);
-      box-shadow:0 6px 20px rgba(0,0,0,.06)
-    }
+    header{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;background:var(--card);box-shadow:0 6px 20px rgba(0,0,0,.08);border-bottom:2px solid var(--primary);flex-wrap:wrap}
     .brand{display:flex;gap:14px;align-items:center}
     .brand img{width:64px;height:64px;object-fit:contain}
     .brand h1{margin:0;font-size:20px;font-weight:700}
     .brand p{margin:2px 0 0;font-size:13px;color:var(--muted)}
-
-    .container{
-      max-width:1200px;margin:28px auto;padding:0 20px;
-      display:grid;grid-template-columns:2fr 1fr;gap:20px
-    }
-    .card{
-      background:var(--card);border-radius:14px;padding:22px;
-      box-shadow:0 8px 26px rgba(0,0,0,.07)
-    }
+    .header-info{display:flex;gap:20px;font-size:14px;color:var(--muted);align-items:center}
+    .header-info div{display:flex;align-items:center;gap:6px}
+    .container{max-width:1200px;margin:28px auto;padding:0 20px;display:grid;grid-template-columns:2fr 1fr;gap:20px}
+    .card{background:var(--card);border-radius:14px;padding:22px;box-shadow:0 8px 26px rgba(0,0,0,.07)}
     h3{margin:0 0 12px;font-size:17px;display:flex;gap:6px;align-items:center}
     label{font-size:12px;color:var(--muted);margin-top:8px;display:block}
-    input,select{
-      width:100%;padding:10px 12px;margin-top:4px;
-      border:1px solid #e5e7eb;border-radius:8px;font-size:14px
-    }
-    button{
-      background:var(--primary);color:#fff;border:none;
-      padding:10px 14px;border-radius:8px;font-weight:600;cursor:pointer
-    }
+    input,select{width:100%;padding:10px 12px;margin-top:4px;border:1px solid #e5e7eb;border-radius:8px;font-size:14px}
+    button{background:var(--primary);color:#fff;border:none;padding:10px 14px;border-radius:8px;font-weight:600;cursor:pointer}
     button.secondary{background:var(--secondary)}
     button.danger{background:#dc2626}
     button.small{padding:7px 10px;font-size:13px}
-
-/* ===== TABEL ABSENSI PROFESIONAL ===== */
-.table-wrapper{
-  margin-top:12px;
-  border-radius:12px;
-  overflow:hidden;
-  border:1px solid #e5e7eb;
-}
-
-table{
-  width:100%;
-  border-collapse:collapse;
-  font-size:14px;
-  background:var(--card);
-}
-
-thead{
-  background:linear-gradient(
-    to right,
-    rgba(31,122,63,.08),
-    rgba(139,94,60,.08)
-  );
-}
-
-th{
-  padding:12px 10px;
-  text-align:left;
-  font-size:12px;
-  letter-spacing:.5px;
-  text-transform:uppercase;
-  color:var(--text);
-  border-bottom:2px solid #e5e7eb;
-}
-
-td{
-  padding:11px 10px;
-  border-bottom:1px solid #e5e7eb;
-  vertical-align:middle;
-}
-
-tbody tr:nth-child(even){
-  background:rgba(0,0,0,.02);
-}
-
-tbody tr:hover{
-  background:rgba(31,122,63,.06);
-}
-
-td:last-child{
-  text-align:center;
-}
-
-td, th {
-  word-wrap: break-word;
-  word-break: break-word;
-  white-space: normal;
-}
-
-/* Atur lebar kolom agar proporsional */
-#attendanceTable th:nth-child(1),
-#attendanceTable td:nth-child(1){
-  width: 30%;
-}
-
-#attendanceTable th:nth-child(2),
-#attendanceTable td:nth-child(2){
-  width: 30%;
-}
-
-#attendanceTable th:nth-child(3),
-#attendanceTable td:nth-child(3){
-  width: 25%;
-}
-
-#attendanceTable th:nth-child(4),
-#attendanceTable td:nth-child(4){
-  width: 15%;
-}
-
+    .table-wrapper{margin-top:12px;border-radius:12px;overflow:hidden;border:1px solid #e5e7eb}
+    table{width:100%;border-collapse:collapse;font-size:14px;background:var(--card)}
+    thead{background:linear-gradient(to right, rgba(31,122,63,.08), rgba(139,94,60,.08))}
+    th{padding:12px 10px;text-align:left;font-size:12px;letter-spacing:.5px;text-transform:uppercase;color:var(--text);border-bottom:2px solid #e5e7eb}
+    td{padding:11px 10px;border-bottom:1px solid #e5e7eb;vertical-align:middle}
+    tbody tr:nth-child(even){background:rgba(0,0,0,.02)}
+    tbody tr:hover{background:rgba(31,122,63,.06)}
+    td:last-child{text-align:center}
+    td, th {word-wrap: break-word;word-break: break-word;white-space: normal}
+    #attendanceTable th:nth-child(1),#attendanceTable td:nth-child(1){width:30%}
+    #attendanceTable th:nth-child(2),#attendanceTable td:nth-child(2){width:30%}
+    #attendanceTable th:nth-child(3),#attendanceTable td:nth-child(3){width:25%}
+    #attendanceTable th:nth-child(4),#attendanceTable td:nth-child(4){width:15%}
     #reader{width:100%;max-height:260px;border-radius:10px;overflow:hidden}
-
-    footer{text-align:center;margin:30px 0;font-size:12px;color:var(--muted)}
-
+    footer{text-align:center;margin:20px 0;font-size:12px;color:var(--muted);border-top:1px solid #e5e7eb;padding-top:8px}
+    .footer-info{display:flex;justify-content:space-between;max-width:1200px;margin:0 auto;padding:0 20px}
     .toast-container{position:fixed;top:20px;right:20px;display:flex;flex-direction:column;gap:10px;z-index:999}
-    .toast{
-      background:var(--primary);color:#fff;padding:10px 16px;
-      border-radius:8px;box-shadow:0 4px 14px rgba(0,0,0,.25);
-      font-size:13px;opacity:0;transform:translateX(100%);transition:.3s
-    }
+    .toast{background:var(--primary);color:#fff;padding:10px 16px;border-radius:8px;box-shadow:0 4px 14px rgba(0,0,0,.25);font-size:13px;opacity:0;transform:translateX(100%);transition:.3s}
     .toast.show{opacity:1;transform:translateX(0)}
     .toast.success{background:#15803d}
     .toast.error{background:#dc2626}
     .toast.info{background:#2563eb}
-
     @media(max-width:1000px){.container{grid-template-columns:1fr}}
-
-    header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:14px 24px;
-  background:var(--card);
-  box-shadow:0 6px 20px rgba(0,0,0,.08);
-  border-bottom:2px solid var(--primary);
-  flex-wrap:wrap;
-}
-
-.header-info{
-  display:flex;
-  gap:20px;
-  font-size:14px;
-  color:var(--muted);
-  align-items:center;
-}
-
-.header-info div{
-  display:flex;
-  align-items:center;
-  gap:6px;
-}
-
-footer{
-  text-align:center;
-  margin:20px 0;
-  font-size:12px;
-  color:var(--muted);
-  border-top:1px solid #e5e7eb;
-  padding-top:8px;
-}
-
-.footer-info{
-  display:flex;
-  justify-content:space-between;
-  max-width:1200px;
-  margin:0 auto;
-  padding:0 20px;
-}
-
-/* ===== RESPONSIVE HEADER & FOOTER ===== */
-@media(max-width:768px){
-  header{
-    flex-direction:column;
-    align-items:flex-start;
-    padding:12px 16px;
-  }
-
-  .brand{
-    width:100%;
-    justify-content:flex-start;
-    gap:10px;
-  }
-
-  .header-info{
-    width:100%;
-    flex-wrap:wrap;
-    margin-top:8px;
-    gap:12px;
-    font-size:13px;
-  }
-
-  footer .footer-info{
-    flex-direction:column;
-    gap:4px;
-    font-size:11px;
-    text-align:center;
-  }
-}
-
+    @media(max-width:768px){header{flex-direction:column;align-items:flex-start;padding:12px 16px}.brand{width:100%;justify-content:flex-start;gap:10px}.header-info{width:100%;flex-wrap:wrap;margin-top:8px;gap:12px;font-size:13px}footer .footer-info{flex-direction:column;gap:4px;font-size:11px;text-align:center}}
   </style>
 </head>
 <body data-theme="light">
-<div id="authScreen" style="
-  position:fixed;
-  inset:0;
-  background:linear-gradient(135deg,#0f172a,#1e293b);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:9999;
-">
-
-  <div style="
-    background:#ffffff;
-    padding:32px 28px;
-    border-radius:16px;
-    max-width:360px;
-    width:100%;
-    box-shadow:0 25px 60px rgba(0,0,0,.35);
-    text-align:center;
-    animation:fadeIn .5s ease;
-  ">
-
-    <!-- LOGO -->
-    <img src="../assets/images/logo.png" alt="DKR Punggelan"
-      style="height:72px;margin-bottom:14px">
-
-<h3 style="
-  margin:0;
-  font-size:18px;
-  color:#1e293b;
-  font-weight:700;
-  letter-spacing:.3px;
-  display:block;
-  text-align:center;
-">
-  AKSES SIMHAD
-</h3>
-
-    <p style="
-      font-size:13px;
-      color:#6b7280;
-      margin:6px 0 18px;
-      line-height:1.4;
-    ">
-      Sistem Informasi Manajemen Kehadiran<br>
-      <strong>DKR Punggelan</strong>
-    </p>
-
-    <input id="tokenInput" type="password" placeholder="Masukkan kode akses"
-      style="
-        width:100%;
-        padding:12px 14px;
-        border-radius:10px;
-        border:1px solid #d1d5db;
-        font-size:14px;
-        outline:none;
-      "
-      onfocus="this.style.borderColor='#6366f1'"
-      onblur="this.style.borderColor='#d1d5db'"
-    >
-
-    <button onclick="checkToken()" style="
-      width:100%;
-      margin-top:16px;
-      padding:12px;
-      border:none;
-      border-radius:10px;
-      background:#4f46e5;
-      color:#fff;
-      font-weight:600;
-      font-size:15px;
-      cursor:pointer;
-    ">
-      Masuk Sistem
-    </button>
-
-    <div id="authError" style="
-      display:none;
-      margin-top:12px;
-      font-size:13px;
-      color:#dc2626;
-    ">
-      Kode akses tidak valid
-    </div>
-
-    <div id="authTime" style="
-      margin-top:18px;
-      font-size:12px;
-      color:#374151;
-    "></div>
-
-    <div style="
-      margin-top:10px;
-      font-size:11px;
-      color:#9ca3af;
-    ">
-      © 2026 DKR Punggelan
-    </div>
-  </div>
-</div>
-
-<style>
-@keyframes fadeIn{
-  from{opacity:0;transform:translateY(10px)}
-  to{opacity:1;transform:none}
-}
-</style>
-
-<script>
-/* ===== KUNCI AKSES (HASH) ===== */
-const _KUNCI_HASH = "ab509099f76158326b98727425675b11e6ea1db86aff64f51fdee015e7497ebc";
-
-/* ===== HASH FUNCTION ===== */
-async function _hash(t){
-  const e = new TextEncoder().encode(t);
-  const r = await crypto.subtle.digest("SHA-256", e);
-  return Array.from(new Uint8Array(r))
-    .map(b => b.toString(16).padStart(2,"0"))
-    .join("");
-}
-
-/* ===== CEK TOKEN ===== */
-async function checkToken(){
-  const input = document.getElementById("tokenInput");
-  const error = document.getElementById("authError");
-  const token = input.value.trim();
-
-  if(!token){
-    error.textContent = "Kode akses wajib diisi";
-    error.style.display = "block";
-    return;
-  }
-
-  if(await _hash(token) === _KUNCI_HASH){
-    sessionStorage.setItem("simhad_auth","ok");
-    document.getElementById("authScreen").style.display="none";
-  }else{
-    error.textContent = "Kode akses tidak valid";
-    error.style.display = "block";
-    input.value="";
-  }
-}
-
-/* ===== SESSION SEKALI AKSES ===== */
-if(sessionStorage.getItem("simhad_auth")==="ok"){
-  document.getElementById("authScreen").style.display="none";
-}
-
-/* ===== ANTI INSPECT DASAR ===== */
-document.addEventListener("contextmenu", e => e.preventDefault());
-
-document.onkeydown = e => {
-  if(
-    e.keyCode === 123 || // F12
-    (e.ctrlKey && e.shiftKey && ["I","J","C"].includes(e.key.toUpperCase())) ||
-    (e.ctrlKey && e.key.toUpperCase() === "U")
-  ){
-    sessionStorage.clear();
-    location.reload();
-    return false;
-  }
-};
-</script>
-
-<script>
-/* ===== DETEKSI INSPECT (REAL WORKING) + PERINGATAN LUCU ===== */
-let _udahKena = false;
-
-setInterval(() => {
-  const threshold = 160;
-
-  const devtoolsTerbuka =
-    window.outerWidth - window.innerWidth > threshold ||
-    window.outerHeight - window.innerHeight > threshold;
-
-  if (devtoolsTerbuka && !_udahKena) {
-    _udahKena = true;
-
-    alert(
-      "🕵️‍♂️ WOY!\n\n" +
-      "Ini bukan lomba ngulik yaa.\n" +
-      "SIMHAD lagi sensitif 🙏"
-    );
-
-    sessionStorage.clear();
-    location.reload();
-  }
-}, 800);
-</script>
-
 <header>
   <div class="brand">
     <img src="../assets/images/logo.png" alt="DKR Punggelan">
@@ -435,7 +83,6 @@ setInterval(() => {
 </header>
 
 <div class="container">
-  <!-- KIRI -->
   <section class="card">
     <h3><i class='bx bx-qr-scan'></i> Scan QR Absensi</h3>
     <select id="camera-select"></select>
@@ -467,11 +114,11 @@ setInterval(() => {
 
     <h3 style="margin-top:24px"><i class='bx bx-list-check'></i> Daftar Hadir</h3>
     <div class="table-wrapper">
-  <table id="attendanceTable">
-      <thead><tr><th>Nama</th><th>Jabatan</th><th>Waktu</th><th>Aksi</th></tr></thead>
-      <tbody></tbody>
+      <table id="attendanceTable">
+        <thead><tr><th>Nama</th><th>Jabatan</th><th>Waktu</th><th>Aksi</th></tr></thead>
+        <tbody></tbody>
       </table>
-</div>
+    </div>
 
     <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
       <button id="clearLog" class="small secondary">Bersihkan</button>
@@ -479,7 +126,6 @@ setInterval(() => {
     </div>
   </section>
 
-  <!-- KANAN -->
   <aside class="card">
     <h3><i class='bx bx-qr'></i> Generator QR</h3>
     <label>Nama</label>
@@ -527,9 +173,8 @@ setInterval(() => {
 <script src="https://cdn.jsdelivr.net/npm/html5-qrcode/minified/html5-qrcode.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
 <script>
-/* ===== LOGIC SAMA DENGAN SISARA (disederhanakan) ===== */
+// ===== LOGIC FINAL =====
 const manualJabatan=document.getElementById('manualJabatan');
 const manualJabatanLainnya=document.getElementById('manualJabatanLainnya');
 const genJabatan=document.getElementById('genJabatan');
@@ -561,7 +206,11 @@ function render(){
   tbody.innerHTML=attendance.map((a,i)=>`<tr><td>${a.nama}</td><td>${a.jabatan}</td><td>${a.waktu}</td><td><button class="small danger" onclick="del(${i})"><i class='bx bx-trash'></i></button></td></tr>`).join('');
 }
 window.del=i=>{attendance.splice(i,1);save();render();toast('Data dihapus','success')}
-function add(n,j){attendance.push({nama:n,jabatan:j,waktu:new Date().toLocaleString('id-ID')});save();render();toast('Absensi ditambahkan','success')}
+function add(n,j){
+  const record={nama:n,jabatan:j,waktu:new Date().toLocaleString('id-ID')};
+  attendance.push(record);save();render();toast('Absensi ditambahkan','success');
+  sendToSheets(record);
+}
 
 addManualBtn.onclick=()=>{
   const n=manualNama.value.trim();
@@ -575,7 +224,9 @@ document.getElementById('generateQR').onclick=()=>{
   const n=genNama.value.trim();
   let j=genJabatan.value==='lainnya'?genJabatanLainnya.value.trim():genJabatan.value;
   if(!n||!j) return toast('Lengkapi data','error');
-  qrCanvas.innerHTML='';new QRCode(qrCanvas,{text:JSON.stringify({nama:n,jabatan:j}),width:200,height:200});
+  qrCanvas.innerHTML='';
+  const qrText=JSON.stringify({nama:n,jabatan:j}); // hanya nama & jabatan
+  new QRCode(qrCanvas,{text:qrText,width:200,height:200});
   toast('QR dibuat','success');
 }
 
@@ -585,15 +236,15 @@ document.getElementById('downloadQR').onclick=()=>{
 }
 
 document.getElementById('clearLog').onclick=()=>{attendance=[];save();render();toast('Data dibersihkan','success')}
-
 document.getElementById('exportCsv').onclick=()=>{
   if(!attendance.length) return toast('Data kosong','info');
-  let csv='Nama,Jabatan,Waktu\n';attendance.forEach(a=>csv+=`${a.nama},${a.jabatan},${a.waktu}\n`);
+  let csv='Nama,Jabatan,Waktu\n';
+  attendance.forEach(a=>csv+=`${a.nama},${a.jabatan},${a.waktu}\n`);
   const blob=new Blob([csv],{type:'text/csv'});const url=URL.createObjectURL(blob);
   const a=document.createElement('a');a.href=url;a.download='SIMHAD_DKR_Punggelan.csv';a.click();URL.revokeObjectURL(url);
 }
 
-/* ===== QR SCANNER ===== */
+// ===== QR SCANNER =====
 let html5QrCode=null;const cameraSelect=document.getElementById('camera-select');
 async function initCameras(){
   const cams=await Html5Qrcode.getCameras();if(!cams.length) return toast('Kamera tidak ditemukan','error');
@@ -604,294 +255,46 @@ async function startScanner(id){
   if(html5QrCode){await html5QrCode.stop().catch(()=>{});html5QrCode.clear();}
   html5QrCode=new Html5Qrcode('reader');
   let last='';let lastTime=0;
-await html5QrCode.start({deviceId:{exact:id}},{fps:10,qrbox:250},txt=>{
-  const now = Date.now();
-  if(txt === last && now - lastTime < 3000) return;
-  last = txt; lastTime = now;
-
-  try {
-    const o = JSON.parse(txt);
-
-    // Ambil hanya nama & jabatan, abaikan properti lain
-    const nama = o.nama || "";
-    let jabatan = o.jabatan || "";
-
-    // Jika ada properti jabatan lain atau jabatan kosong, bisa di-handle di sini
-    if(nama && jabatan && !attendance.some(a => a.nama === nama && a.jabatan === jabatan)) {
-      add(nama, jabatan); // pakai fungsi add() yang sudah ada, otomatis kirim ke Sheets
-    }
-
-  } catch(err) {
-    // Kalau QR bukan JSON, bisa diabaikan atau log
-    console.log("QR tidak valid:", txt);
-  }
-});
+  await html5QrCode.start({deviceId:{exact:id}},{fps:10,qrbox:250},txt=>{
+    const now=Date.now();
+    if(txt===last&&now-lastTime<3000) return;
+    last=txt;lastTime=now;
+    try{
+      const o=JSON.parse(txt);
+      const nama=o.nama||"";
+      const jabatan=o.jabatan||"";
+      if(nama&&jabatan&&!attendance.some(a=>a.nama===nama&&a.jabatan===jabatan)) add(nama,jabatan);
+    }catch(err){console.log("QR tidak valid:",txt);}
+  });
 }
 function restartScanner(){startScanner(cameraSelect.value)}
-async function stopScanner(){if(html5QrCode){await html5QrCode.stop();html5QrCode.clear();toast('Kamera dimatikan','info')}}
+async function stopScanner(){if(html5QrCode) await html5QrCode.stop().catch(()=>{});html5QrCode.clear();}
 
+// ===== PDF DOWNLOAD =====
+document.getElementById('downloadPdf').onclick=()=>{
+  if(!attendance.length) return toast('Data kosong','info');
+  const { jsPDF } = window.jspdf;const doc=new jsPDF();
+  const tgl=tanggal.value;const ket=keterangan.value||'-';
+  doc.setFontSize(14);doc.text('DAFTAR HADIR',105,20,null,'center');doc.setFontSize(10);
+  doc.text(`Kegiatan: ${ket}`,14,28);doc.text(`Tanggal: ${tgl}`,14,36);
+  const startY=42;
+  doc.autoTable({head:[['Nama','Jabatan','Waktu']],body:attendance.map(a=>[a.nama,a.jabatan,a.waktu]),startY,theme:'grid',styles:{fontSize:9}});
+  doc.save(`Daftar_Hadir_${tgl}.pdf`);
+  toast('PDF siap diunduh','success');
+}
+
+// ===== TIME & INTERNET SPEED =====
+function updateTime(){const d=new Date();const t=d.toLocaleTimeString('id-ID');document.getElementById('currentTime').textContent=t;document.getElementById('footerTime').textContent=t;}
+setInterval(updateTime,1000);updateTime();
+async function updateInternetSpeed(){try{const start=performance.now();await fetch('https://www.google.com/favicon.ico');const end=performance.now();document.getElementById('internetSpeed').textContent=((1/(end-start)*1000).toFixed(2))+' Mbps'}catch(e){document.getElementById('internetSpeed').textContent='-- Mbps'}}
+setInterval(updateInternetSpeed,5000);updateInternetSpeed();
+
+// ===== SHEETS SIMULATION =====
+function sendToSheets(record){console.log('Sent to Sheets:',record);}
+
+// ===== INIT =====
 render();initCameras();
 </script>
-
-<script>
-const downloadPdf = document.getElementById('downloadPdf');
-downloadPdf.onclick = () => {
-  if (attendance.length === 0) {
-    toast('Belum ada data absensi!', 'info');
-    return;
-  }
-
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF({ unit: 'pt', format: 'a4' });
-
-  const pageWidth = doc.internal.pageSize.getWidth();
-  const pageHeight = doc.internal.pageSize.getHeight();
-  const marginX = 40;
-  const col = {
-  no: marginX + 10,
-  nama: marginX + 50,
-  jabatan: marginX + 260,
-  waktu: marginX + 430
-};
-
-const colWidth = {
-  no: 30,
-  nama: 200,
-  jabatan: 150,
-  waktu: 120
-};
-
-  let y;
-  const footerSafeArea = 90;
-
-  const kopImg = new Image();
-  kopImg.src = 'assets/images/kopdkr.png'; // ← PAKAI GAMBAR KOP KAMU
-
-  kopImg.onload = () => {
-    // === KOP ===
-    const ratio = kopImg.height / kopImg.width;
-    const kopWidth = pageWidth - marginX * 2;
-    const kopHeight = kopWidth * ratio;
-
-    doc.addImage(kopImg, 'PNG', marginX, 30, kopWidth, kopHeight);
-
-    // === TANGGAL (GAYA SAMA KAYA DESAIN) ===
-    const today = new Date();
-    const tanggalCetak = today.toLocaleDateString('id-ID', {
-      day: '2-digit',
-      month: 'long',
-      year: 'numeric'
-    });
-
-    doc.setFont('helvetica', 'normal');
-    doc.setFontSize(11);
-    doc.text(
-      `Banjarnegara, ${tanggalCetak}`,
-      pageWidth - marginX,
-      30 + kopHeight + 14,
-      { align: 'right' }
-    );
-
-    // === JUDUL ===
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(14);
-    doc.text(
-      'DAFTAR HADIR KEGIATAN',
-      pageWidth / 2,
-      30 + kopHeight + 45,
-      { align: 'center' }
-    );
-
-    doc.setFontSize(12);
-    doc.text(
-      'DEWAN KERJA RANTING PUNGGELAN',
-      pageWidth / 2,
-      30 + kopHeight + 65,
-      { align: 'center' }
-    );
-
-    const ket = keterangan.value || '';
-    doc.setFont('helvetica', 'italic');
-    doc.setFontSize(11);
-    doc.text(
-      `“${ket}”`,
-      pageWidth / 2,
-      30 + kopHeight + 90,
-      { align: 'center' }
-    );
-
-    y = 30 + kopHeight + 120;
-
-    // === TABEL HEADER PDF (PROFESIONAL) ===
-// === HEADER TABEL (EXCEL STYLE) ===
-doc.setFont('helvetica','bold');
-doc.setFontSize(11);
-doc.setDrawColor(180);
-doc.setFillColor(230,235,233);
-
-const headerHeight = 22;
-
-// kotak header
-doc.rect(col.no - 5, y - 14, colWidth.no + 5, headerHeight, 'FD');
-doc.rect(col.nama - 5, y - 14, colWidth.nama, headerHeight, 'FD');
-doc.rect(col.jabatan - 5, y - 14, colWidth.jabatan, headerHeight, 'FD');
-doc.rect(col.waktu - 5, y - 14, colWidth.waktu, headerHeight, 'FD');
-
-// teks header
-doc.text('NO', col.no, y);
-doc.text('NAMA', col.nama, y);
-doc.text('JABATAN', col.jabatan, y);
-doc.text('WAKTU', col.waktu, y);
-
-doc.setFont('helvetica','normal');
-y += headerHeight;
-
-function drawFooter() {
-  doc.setFont('helvetica', 'italic');
-  doc.setFontSize(9);
-  doc.setTextColor(100, 116, 139);
-
-  const footerY = pageHeight - 60;
-
-  doc.text(
-    '• Dokumen ini dicetak melalui Sistem Informasi Manajemen Kehadiran (SIMHAD)',
-    pageWidth / 2,
-    footerY,
-    { align: 'center' }
-  );
-
-  doc.text(
-    '• Dokumen ini merupakan dokumen resmi dan sah tanpa tanda tangan dan cap basah',
-    pageWidth / 2,
-    footerY + 14,
-    { align: 'center' }
-  );
-}
-
-// === ISI TABEL (GRID EXCEL) ===
-attendance.forEach((a, i) => {
-
-  const namaText = doc.splitTextToSize(a.nama, colWidth.nama - 8);
-  const jabatanText = doc.splitTextToSize(a.jabatan, colWidth.jabatan - 8);
-  const waktuText = doc.splitTextToSize(a.waktu, colWidth.waktu - 8);
-
-  const rowHeight = Math.max(
-    namaText.length,
-    jabatanText.length,
-    waktuText.length,
-    1
-  ) * 16;
-
-  // page break
-  if (y + rowHeight > pageHeight - footerSafeArea) {
-    drawFooter();
-    doc.addPage();
-    y = 80;
-
-    // ulang header di halaman baru
-    doc.setFont('helvetica','bold');
-    doc.setFillColor(230,235,233);
-
-    doc.rect(col.no - 5, y - 14, colWidth.no + 5, headerHeight, 'FD');
-    doc.rect(col.nama - 5, y - 14, colWidth.nama, headerHeight, 'FD');
-    doc.rect(col.jabatan - 5, y - 14, colWidth.jabatan, headerHeight, 'FD');
-    doc.rect(col.waktu - 5, y - 14, colWidth.waktu, headerHeight, 'FD');
-
-    doc.text('NO', col.no, y);
-    doc.text('NAMA', col.nama, y);
-    doc.text('JABATAN', col.jabatan, y);
-    doc.text('WAKTU', col.waktu, y);
-
-    doc.setFont('helvetica','normal');
-    y += headerHeight;
-  }
-
-  // === KOTAK BARIS ===
-  doc.setDrawColor(200);
-  doc.rect(col.no - 5, y - 12, colWidth.no + 5, rowHeight, 'S');
-  doc.rect(col.nama - 5, y - 12, colWidth.nama, rowHeight, 'S');
-  doc.rect(col.jabatan - 5, y - 12, colWidth.jabatan, rowHeight, 'S');
-  doc.rect(col.waktu - 5, y - 12, colWidth.waktu, rowHeight, 'S');
-
-  // teks isi
-  doc.text(String(i + 1), col.no, y);
-  doc.text(namaText, col.nama, y);
-  doc.text(jabatanText, col.jabatan, y);
-  doc.text(waktuText, col.waktu, y);
-
-  y += rowHeight;
-});
-
-    // === FOOTER RESMI (FORMAT BULLET DOKUMEN) ===
-    drawFooter();
-    doc.save(`Absensi_DKR_Punggelan_${today.toISOString().slice(0,10)}.pdf`);
-    toast('PDF berhasil diunduh!', 'success');
-  };
-};
-
-const SHEET_URL = 'https://script.google.com/macros/s/AKfycby6Nywqu70XrJ2eWsWgZF4uQpjNGqtrdLaDvL2qj88743GFVSDG3FMsJfFkCANpWrmF/exec'; // ganti sesuai web app-mu
-
-function sendToSheets(record) {
-  const payload = {
-    nama: record.nama,
-    jabatan: record.jabatan,
-    waktu: record.waktu,
-    keterangan: keterangan.value,
-    tanggal: tanggal.value
-  };
-
-  fetch(SHEET_URL, {
-    method: 'POST',
-    body: JSON.stringify(payload)
-  })
-  .then(res => res.json())
-  .then(res => {
-    if(res.status === 'success') toast('Data tersimpan di Sheets','success');
-    else toast('Gagal kirim ke Sheets','error');
-  })
-  .catch(err => toast('Gagal kirim ke Sheets','error'));
-}
-
-// Modifikasi fungsi add() agar otomatis kirim ke Sheets
-function add(n,j){
-  const record = {nama:n,jabatan:j,waktu:new Date().toLocaleString('id-ID')};
-  attendance.push(record);
-  save();render();toast('Absensi ditambahkan','success');
-  sendToSheets(record);
-}
-
-</script>
-
-<script>
-// ===== JAM REAL-TIME =====
-function updateTime(){
-  const now = new Date();
-  const timeStr = now.toLocaleTimeString('id-ID', { hour12: false });
-  document.getElementById('currentTime').textContent = timeStr;
-  document.getElementById('footerTime').textContent = timeStr;
-}
-setInterval(updateTime, 1000);
-updateTime();
-
-// ===== KECEPATAN INTERNET (Download Speed sederhana) =====
-async function testInternetSpeed(){
-  const imageAddr = "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png"; 
-  const startTime = new Date().getTime();
-  try{
-    await fetch(imageAddr + "?cache=" + Math.random());
-    const endTime = new Date().getTime();
-    const duration = (endTime - startTime) / 1000; // detik
-    const fileSizeBytes = 6990; // perkiraan logo google ~7 KB
-    const speedBps = fileSizeBytes * 8 / duration;
-    const speedMbps = (speedBps / 1024 / 1024).toFixed(2);
-    document.getElementById('internetSpeed').textContent = `${speedMbps} Mbps`;
-  } catch {
-    document.getElementById('internetSpeed').textContent = 'Error';
-  }
-}
-setInterval(testInternetSpeed, 15000);
-testInternetSpeed();
-</script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
 </body>
 </html>
